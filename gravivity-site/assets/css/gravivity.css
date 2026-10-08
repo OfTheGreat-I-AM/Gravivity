@@ -1,0 +1,662 @@
+/* ==========================================================================
+   Gravivity overrides for the Escape Velocity template.
+   Loaded AFTER main.css, so anything here wins.
+   Palette = the Gravivity app palette.
+   ========================================================================== */
+
+:root {
+  --maroon: #800000;
+  --maroon-light: #9a2e2e;
+  --maroon-dark: #6b0000;
+  --ink: #3c0000;
+  --text: #7a5b52;
+  --cream: #fbfbef;
+  --sand: #e2cbb6;
+  --deep: #2b0a0a;
+}
+/* ---------- Lenis (recommended base styles) ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---------- Spotlight: SVG path drawn on scroll ---------- */
+.spotlight {
+  position: relative;
+  isolation: isolate; /* keeps the z-index:-1 path above the spotlight's own background */
+  overflow: hidden;
+  background-color: var(--cream);
+}
+.spotlight .svg-path {
+  position: absolute;
+  top: 25svh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  z-index: -1;
+  pointer-events: none;
+}
+.spotlight .svg-path svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* let the path show through the sections inside it */
+.spotlight .wrapper,
+.spotlight .wrapper .title {
+  background-color: transparent;
+}
+
+/* ---------- Full-height sections (header with the rings + last section) ---------- */
+#header,
+#footer {
+  min-height: 100svh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#header {
+  align-items: center;
+}
+.wrapper {
+  scroll-margin-top: 7.5em;
+} /* leaves room for the fixed nav + the title tab above each section */
+
+/* ---------- Text colours ---------- */
+body,
+input,
+textarea,
+select {
+  color: var(--text);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--ink);
+}
+a {
+  color: var(--maroon);
+}
+
+/* ---------- Remove dependence on the template's image files ---------- */
+.wrapper.style1,
+.wrapper.style1 .title,
+.wrapper.style3,
+.wrapper.style3 .title,
+#footer,
+.dropotron,
+#navPanel,
+#titleBar {
+  background-image: none;
+}
+
+.wrapper .title:before,
+.wrapper .title:after {
+  display: none;
+}
+
+/* ---------- Buttons ---------- */
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  background-color: var(--maroon-light);
+}
+
+.button.style1,
+button.style1,
+input[type="submit"].style1,
+input[type="button"].style1,
+input[type="reset"].style1 {
+  background-color: var(--maroon);
+  background-image: none;
+}
+.button.style1:hover,
+input[type="submit"].style1:hover {
+  background-color: var(--maroon-light);
+}
+.button.style1:active,
+input[type="submit"].style1:active {
+  background-color: var(--maroon-dark);
+}
+
+.button.style2,
+input[type="submit"].style2 {
+  color: var(--ink);
+  box-shadow: inset 0 0 2px 0 var(--sand);
+}
+.button.style2:hover {
+  background: none;
+  box-shadow: inset 0 0 2px 0 var(--maroon);
+  color: var(--maroon);
+}
+
+.button.style3,
+input[type="submit"].style3 {
+  background-color: var(--ink);
+  background-image: none;
+}
+.button.style3:hover {
+  background-color: var(--deep);
+}
+
+/* ---------- Header: concentric "gravity well" rings ---------- */
+#header {
+  background: linear-gradient(135deg, #3c0000 0%, #800000 58%, #9a2e2e 100%);
+  overflow: hidden;
+}
+#header:before {
+  background: repeating-radial-gradient(
+    circle at 50% 135%,
+    rgba(251, 251, 239, 0.1) 0,
+    rgba(251, 251, 239, 0.1) 1px,
+    transparent 1px,
+    transparent 52px
+  );
+  transform-origin: 50% 135%;
+  animation: wells 9s ease-in-out infinite alternate;
+}
+@keyframes wells {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #header:before {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+#logo h1 {
+  font-size: 3em;
+  letter-spacing: 0.3em;
+}
+#logo p {
+  color: rgba(251, 251, 239, 0.75);
+}
+
+/* ---------- Intro (maroon band) ---------- */
+.wrapper.style1,
+.wrapper.style1 .title {
+  background-color: var(--maroon);
+}
+.wrapper.style1 .actions .button.style2 {
+  color: #fff;
+  box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.7);
+}
+.wrapper.style1 .actions .button.style2:hover {
+  color: #fff;
+  box-shadow: inset 0 0 2px 1px #fff;
+}
+.wrapper.style1 .actions .button.style3 {
+  background-color: var(--ink);
+}
+.wrapper.style1 .actions .button.style3:hover {
+  background-color: var(--deep);
+}
+
+/* ---------- Main / team (white) ---------- */
+.wrapper.style2 .title {
+  color: var(--ink);
+}
+
+/* ---------- Tech stack (cream) ---------- */
+.wrapper.style3,
+.wrapper.style3 .title {
+  background-color: var(--cream);
+}
+.wrapper.style3 .title {
+  color: var(--ink);
+}
+
+#highlights .highlight h3,
+#stack .highlight h3 {
+  color: var(--maroon);
+}
+
+.stack-icon {
+  width: 4.5em;
+  height: 4.5em;
+  margin: 0 auto 1.25em auto;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+}
+.stack-icon .icon:before {
+  font-size: 1.6em;
+  color: var(--maroon);
+}
+
+ul.tags {
+  list-style: none;
+  padding: 0;
+  margin: 1.25em 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+}
+ul.tags li {
+  padding: 0.15em 1em;
+  border: 1px solid var(--sand);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.8em;
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: 0.05em;
+}
+
+/* Feature icons (main.css uses !important on the heading colour) */
+.feature-list h3 {
+  color: var(--maroon) !important;
+}
+.feature-list h3:before {
+  background: var(--maroon);
+  background-image: none;
+  color: var(--cream);
+}
+#footer .feature-list h3 {
+  color: #fff !important;
+}
+#footer .feature-list h3:before {
+  background: rgba(251, 251, 239, 0.12);
+  background-image: none;
+  color: var(--sand);
+}
+header.style1 p {
+  color: var(--text);
+}
+
+/* ---------- Team ---------- */
+.team-card {
+  text-align: center;
+}
+.team-card .avatar {
+  width: 5em;
+  height: 5em;
+  margin: 0 auto 1em auto;
+  border-radius: 50%;
+  background: var(--maroon);
+  color: var(--cream);
+  font-weight: 900;
+  font-size: 1.1em;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team-card img.avatar {
+  object-fit: cover;
+}
+.team-card h3 {
+  font-size: 1.1em;
+  margin: 0 0 0.25em 0;
+}
+.team-card p {
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+/* ---------- Footer / contact (deep maroon) ---------- */
+#footer {
+  background-color: var(--deep);
+}
+#footer .title {
+  background-color: var(--deep);
+}
+#footer form input[type="text"],
+#footer form input[type="email"],
+#footer form textarea {
+  background: var(--cream);
+  color: var(--ink);
+}
+#footer form input::placeholder,
+#footer form textarea::placeholder {
+  color: var(--text);
+}
+.form-note {
+  color: var(--sand);
+  font-weight: 700;
+  min-height: 1.5em;
+  margin-top: 1em;
+}
+
+/* ---------- Mobile nav (the template's slide-out panel) ---------- */
+#titleBar {
+  background-color: transparent;
+  transition:
+    background-color 0.3s ease,
+    transform 0.5s ease;
+}
+#navPanel {
+  background-color: var(--deep);
+}
+
+#stack .highlight {
+  text-align: center;
+}
+
+/* ==========================================================================
+   ANIMATION + NEON ADDITIONS
+   ========================================================================== */
+:root {
+  --dusk: #3c0000; /* top of the screenshots section */
+}
+
+/* ---------- Header: drop canvas sits above the rings, below logo + nav ---------- */
+#header canvas#dropCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+#logo {
+  z-index: 1;
+}
+#nav {
+  z-index: 2;
+}
+#logo h1 {
+  text-shadow: 0 0 24px rgba(251, 251, 239, 0.35);
+}
+
+/* ---------- Screenshots: Mars at dusk (rings + waves, same family as the header) ---------- */
+#screens {
+  background: linear-gradient(
+    180deg,
+    var(--dusk) 0%,
+    #5a0f0f 55%,
+    #7a2020 100%
+  );
+  color: rgba(251, 251, 239, 0.7);
+}
+#screens .title {
+  background: var(--dusk);
+  color: var(--cream);
+}
+#screens .container {
+  position: relative;
+  z-index: 1;
+}
+
+.mars-fx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Concentric rings, slowly breathing, same as the header */
+.mars-rings {
+  position: absolute;
+  inset: 0;
+  background: repeating-radial-gradient(
+    circle at 50% -8%,
+    rgba(251, 251, 239, 0.07) 0,
+    rgba(251, 251, 239, 0.07) 1px,
+    transparent 1px,
+    transparent 56px
+  );
+  transform-origin: 50% -8%;
+  animation: wells 9s ease-in-out infinite alternate;
+}
+
+/* Two slow, drifting wavy lines along the bottom edge */
+.mars-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-repeat: repeat-x;
+  background-size: 600px 60px;
+}
+.mars-wave-1 {
+  bottom: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='60' viewBox='0 0 600 60'%3E%3Cpath d='M0 30 C100 0 200 0 300 30 S500 60 600 30' fill='none' stroke='%23E2CBB6' stroke-opacity='0.55' stroke-width='1.5'/%3E%3C/svg%3E");
+  animation: waveDrift 16s linear infinite;
+}
+.mars-wave-2 {
+  bottom: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='60' viewBox='0 0 600 60'%3E%3Cpath d='M0 30 C100 0 200 0 300 30 S500 60 600 30' fill='none' stroke='%23FBFBEF' stroke-opacity='0.25' stroke-width='1'/%3E%3C/svg%3E");
+  animation: waveDrift 24s linear infinite reverse;
+}
+@keyframes waveDrift {
+  to {
+    background-position-x: 600px;
+  }
+}
+
+#screens header.style1 h2 {
+  color: #fff;
+}
+#screens header.style1 p {
+  color: rgba(251, 251, 239, 0.7);
+}
+
+/* Readout */
+.readout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 0 0 4em 0;
+}
+.gauge {
+  flex: 1 1 10em;
+  padding: 0.9em 1.25em;
+  border: 1px solid rgba(226, 203, 182, 0.3);
+  border-radius: 12px;
+  background: rgba(251, 251, 239, 0.06);
+}
+.gauge-wide {
+  flex-grow: 2;
+}
+.gauge-label {
+  display: block;
+  font-size: 0.65em;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sand);
+  line-height: 1.6;
+  margin-bottom: 0.4em;
+}
+.gauge-value {
+  display: block;
+  font-size: 1.5em;
+  font-weight: 900;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+  color: var(--cream);
+}
+.level {
+  display: block;
+  height: 0.9em;
+  margin-top: 0.9em;
+  border: 1px solid rgba(226, 203, 182, 0.55);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.level i {
+  display: block;
+  height: 100%;
+  width: 15%;
+  background: linear-gradient(90deg, var(--sand), #f3e3dd);
+  transition: width 1.2s ease-in-out;
+}
+
+/* Screenshot frames */
+.shot {
+  margin: 0 0 3em 0;
+}
+.shot-frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(226, 203, 182, 0.55);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+.shot:hover .shot-frame {
+  transform: translateY(-4px);
+  border-color: var(--cream);
+}
+.shot-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.shot.phone .shot-frame {
+  aspect-ratio: 9 / 16;
+  max-width: 15em;
+  margin: 0 auto;
+}
+
+.shot-empty {
+  display: none;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--sand);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  font-size: 0.8em;
+  line-height: 1.6;
+  background: repeating-radial-gradient(
+    circle at 50% 120%,
+    rgba(251, 251, 239, 0.07) 0,
+    rgba(251, 251, 239, 0.07) 1px,
+    transparent 1px,
+    transparent 40px
+  );
+}
+.shot-empty small {
+  display: block;
+  opacity: 0.7;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+}
+.shot.is-empty .shot-frame img {
+  display: none;
+}
+.shot.is-empty .shot-empty {
+  display: flex;
+}
+
+.shot figcaption {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 0.85em;
+  line-height: 1.5;
+  color: rgba(251, 251, 239, 0.7);
+}
+.shot figcaption strong {
+  display: block;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+/* Gentle fade-up when a frame scrolls into view (only if JS is running) */
+.gv-js .shot {
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+.gv-js .shot:not(.on) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mars-rings,
+  .mars-wave {
+    animation: none;
+  }
+  .gv-js .shot,
+  .shot-frame,
+  .level i {
+    transition: none;
+  }
+}
+
+/* ---------- Sticky nav: transparent at the top, frosted glass once you scroll ---------- */
+#nav {
+  position: fixed;
+  top: 1.5em;
+  z-index: 100;
+  pointer-events: none; /* the empty strip either side of the pill stays clickable-through */
+  transition: top 0.3s ease;
+}
+#nav > ul {
+  pointer-events: auto;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    backdrop-filter 0.3s ease,
+    -webkit-backdrop-filter 0.3s ease;
+}
+body.is-scrolled #nav {
+  top: 0.75em;
+}
+body.is-scrolled #nav > ul {
+  background-color: rgba(43, 10, 10, 0.72);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow:
+    inset 0 0 1px 1px rgba(251, 251, 239, 0.25),
+    0 8px 24px rgba(0, 0, 0, 0.25);
+}
+/* current section gets an underline */
+#nav > ul > li.active > a {
+  color: #fff;
+  box-shadow: inset 0 -2px 0 rgba(251, 251, 239, 0.8);
+}
+
+/* Mobile: the template's top bar gets the same treatment */
+body.is-scrolled #titleBar {
+  background-color: rgba(43, 10, 10, 0.6);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nav,
+  #nav > ul,
+  #titleBar {
+    transition: none;
+  }
+}

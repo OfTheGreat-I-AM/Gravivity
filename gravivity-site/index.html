@@ -1,0 +1,494 @@
+<!doctype html>
+<!--
+	Gravivity promo site
+	Based on "Escape Velocity" by HTML5 UP | html5up.net | @ajlkn
+	Template licensed CCA 3.0 (html5up.net/license) - keep the credit in the footer.
+-->
+<html lang="en">
+  <head>
+    <title>Gravivity — Production &amp; Inventory Management</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- Icons: loaded from a CDN so you don't need the template's "webfonts" folder.
+		     If you copy that folder into assets/webfonts you can delete this line. -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- Gravivity colours and overrides. Must stay AFTER main.css -->
+    <link rel="stylesheet" href="assets/css/gravivity.css" />
+  </head>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <section id="header" class="wrapper">
+        <!-- Falling-drop animation (drawn by assets/js/gravivity.js) -->
+        <canvas id="dropCanvas" aria-hidden="true"></canvas>
+
+        <!-- Logo -->
+        <div id="logo">
+          <h1><a href="index.html">Gravivity</a></h1>
+          <p>Production &amp; Inventory Management</p>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+          <ul>
+            <li><a href="#intro">Overview</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#screens">Screens</a></li>
+            <li><a href="#stack">Tech Stack</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#footer">Request a Demo</a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <!-- Intro -->
+      <section id="intro" class="wrapper style1">
+        <div class="title">Overview</div>
+        <div class="container">
+          <p class="style1">Built for chemical manufacturing</p>
+          <p class="style2">
+            Batch production and effective traceability,<br
+              class="mobile-hide"
+            />
+            finally in one place.
+          </p>
+          <p class="style3">
+            Gravivity replaces spreadsheet chaos with
+            <strong>real-time stock visibility</strong>,
+            <strong>role-based access</strong>, and
+            <strong>full production traceability</strong> &ndash; from raw
+            material to finished batch.
+          </p>
+          <ul class="actions">
+            <li>
+              <a href="#footer" class="button style3 large">See it in action</a>
+            </li>
+            <!-- TODO: replace # with your GitHub repo link -->
+            <li><a href="#" class="button style2 large">View on GitHub</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="wrapper style2">
+        <div class="title">What it does</div>
+        <div class="container">
+          <header class="style1">
+            <h2>One system for the whole production floor</h2>
+            <p>From receiving stock to signing off a finished batch</p>
+          </header>
+          <div class="feature-list">
+            <div class="row">
+              <div class="col-6 col-12-medium">
+                <section>
+                  <h3 class="icon solid fa-boxes">Real-Time Inventory</h3>
+                  <p>
+                    Live stock levels, low-stock alerts, and barcode-based
+                    receiving keep the floor and the office in sync.
+                  </p>
+                </section>
+              </div>
+              <div class="col-6 col-12-medium">
+                <section>
+                  <h3 class="icon solid fa-route">Batch Traceability</h3>
+                  <p>
+                    Every batch tracks its materials, cost, specific gravity,
+                    and full production timeline &ndash; planned to completed.
+                  </p>
+                </section>
+              </div>
+              <div class="col-6 col-12-medium">
+                <section>
+                  <h3 class="icon solid fa-user-shield">Role-Based Access</h3>
+                  <p>
+                    Production staff, inventory managers, sales, and admins each
+                    see exactly what their role needs &ndash; nothing more.
+                  </p>
+                </section>
+              </div>
+              <div class="col-6 col-12-medium">
+                <section>
+                  <h3 class="icon solid fa-calculator">
+                    Automated Calculations
+                  </h3>
+                  <p>
+                    Specific gravity, batch cost, and material usage are
+                    computed automatically, not tallied by hand.
+                  </p>
+                </section>
+              </div>
+            </div>
+          </div>
+          <ul class="actions special">
+            <li>
+              <a href="#footer" class="button style1 large">Request a Demo</a>
+            </li>
+            <li>
+              <a href="#stack" class="button style2 large">See the Tech</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Screenshots -->
+      <section id="screens" class="wrapper mars">
+        <div class="title">In action</div>
+        <div class="mars-fx" aria-hidden="true">
+          <div class="mars-rings"></div>
+          <div class="mars-wave mars-wave-1"></div>
+          <div class="mars-wave mars-wave-2"></div>
+        </div>
+        <div class="container">
+          <header class="style1">
+            <h2>See it running</h2>
+            <p>Real screens from the system</p>
+          </header>
+
+          <!-- Simulated live readout (values are demo data, animated in gravivity.js) -->
+          <div class="readout">
+            <div class="gauge">
+              <span class="gauge-label">Specific gravity</span>
+              <span class="gauge-value" id="sgValue">1.184</span>
+            </div>
+            <div class="gauge">
+              <span class="gauge-label">Batch status</span>
+              <span class="gauge-value" id="batchState">Mixing</span>
+            </div>
+            <div class="gauge gauge-wide">
+              <span class="gauge-label">Batch progress</span>
+              <span class="level"><i id="levelBar"></i></span>
+            </div>
+          </div>
+
+          <div class="row gtr-150 aln-center">
+            <div class="col-8 col-12-medium">
+              <figure class="shot">
+                <div class="shot-frame">
+                  <img
+                    src="assets/images/system/web dashboard.png"
+                    alt="Gravivity web dashboard"
+                  />
+                  <span class="shot-empty"
+                    >Screenshot goes here<small
+                      >images/dashboard.png</small
+                    ></span
+                  >
+                </div>
+                <figcaption>
+                  <strong>Dashboard</strong>Live stock levels and active batches
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-4 col-12-medium">
+              <figure class="shot phone">
+                <div class="shot-frame">
+                  <img
+                    src="assets/images/system/mobile-scan.png"
+                    alt="Gravivity mobile app scanning a barcode"
+                  />
+                  <span class="shot-empty"
+                    >Screenshot goes here<small
+                      >images/mobile-scan.png</small
+                    ></span
+                  >
+                </div>
+                <figcaption>
+                  <strong>Mobile receiving</strong>Barcode scanning on the floor
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-6 col-12-medium">
+              <figure class="shot">
+                <div class="shot-frame">
+                  <img
+                    src="assets/images/system/web batch timeline.png"
+                    alt="Gravivity batch detail screen"
+                  />
+                  <span class="shot-empty"
+                    >Screenshot goes here<small
+                      >images/batch-timeline.png</small
+                    ></span
+                  >
+                </div>
+                <figcaption>
+                  <strong>Batch traceability</strong>Materials, cost and
+                  timeline per batch
+                </figcaption>
+              </figure>
+            </div>
+            <div class="col-6 col-12-medium">
+              <figure class="shot">
+                <div class="shot-frame">
+                  <img
+                    src="assets/images/system/web inventory.png"
+                    alt="Gravivity inventory screen"
+                  />
+                  <span class="shot-empty"
+                    >Screenshot goes here<small
+                      >images/inventory.png</small
+                    ></span
+                  >
+                </div>
+                <figcaption>
+                  <strong>Inventory</strong>Low-stock alerts and receiving
+                  history
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <div class="spotlight"> -->
+      <div class="svg-path">
+        <svg
+          width="1664"
+          height="3049"
+          viewBox="0 0 1664 3049"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            id="stroke-path"
+            d="M749.653 106.437C749.653 106.437 1224.91 46.5759 1435.51 291.942C1839.05 762.103 464.588 486.478 245.585 1158.46C125.124 1528.08 21.936 1858.57 181.694 2196.98C311.902 2472.8 921.205 2595.29 921.205 2263.49C921.205 1901.48 497.23 1571.61 749.653 1339.46C1093.84 1022.93 1751.79 1710.97 1512.81 1963.48C1304.14 2183.97 164.751 2763.5 433.728 2949"
+            stroke="#E2CBB6"
+            stroke-width="200"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+
+      <!-- Tech stack -->
+      <section id="stack" class="wrapper style3">
+        <div class="title">Under the hood</div>
+        <div class="container">
+          <div class="row aln-center">
+            <div class="col-4 col-12-medium">
+              <section class="highlight">
+                <div class="stack-icon">
+                  <span class="icon solid fa-mobile-alt"></span>
+                </div>
+                <h3>Mobile app</h3>
+                <p>
+                  Barcode scanning and floor-level updates, built for the people
+                  on the production line.
+                </p>
+                <ul class="tags">
+                  <li>React Native</li>
+                  <li>Expo</li>
+                </ul>
+              </section>
+            </div>
+            <div class="col-4 col-12-medium">
+              <section class="highlight">
+                <div class="stack-icon">
+                  <span class="icon solid fa-desktop"></span>
+                </div>
+                <h3>Web app</h3>
+                <p>
+                  The office view: dashboards, batch records, and role-based
+                  administration.
+                </p>
+                <ul class="tags">
+                  <li>React</li>
+                  <li>Vite</li>
+                </ul>
+              </section>
+            </div>
+            <div class="col-4 col-12-medium">
+              <section class="highlight">
+                <div class="stack-icon">
+                  <span class="icon solid fa-database"></span>
+                </div>
+                <h3>Backend &amp; data</h3>
+                <p>
+                  One API and database behind both apps, packaged to deploy the
+                  same way everywhere.
+                </p>
+                <ul class="tags">
+                  <li>Spring Boot</li>
+                  <li>Java</li>
+                  <li>PostgreSQL</li>
+                  <li>Docker</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section id="team" class="wrapper style2">
+        <div class="title">The team</div>
+        <div class="container">
+          <header class="style1">
+            <h2>Built by four developers</h2>
+            <p>Mobile, web, and backend &ndash; one team project</p>
+          </header>
+          <div class="row aln-center">
+            <!-- To use a real photo, replace the <div class="avatar"> -->
+            <div class="col-3 col-6-medium col-12-small">
+              <section class="team-card">
+                <img
+                  class="avatar"
+                  src="assets/images/developers/risuna.jpeg"
+                  alt="Name"
+                />
+                <h3>Risuna Mabasa</h3>
+                <p>Team Lead | Full-Stack Developer</p>
+              </section>
+            </div>
+            <div class="col-3 col-6-medium col-12-small">
+              <section class="team-card">
+                <div class="avatar">DK</div>
+                <h3>Diya Kishore</h3>
+                <p>Web Developer</p>
+              </section>
+            </div>
+            <div class="col-3 col-6-medium col-12-small">
+              <section class="team-card">
+                <div class="avatar">PO</div>
+                <h3>Paul Oluwasona</h3>
+                <p>Backend Developer</p>
+              </section>
+            </div>
+            <div class="col-3 col-6-medium col-12-small">
+              <section class="team-card">
+                <div class="avatar">MN</div>
+                <h3>Musa Nkosi</h3>
+                <p>Mobile Developer</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- </div> -->
+
+      <!-- Contact / CTA -->
+      <section id="footer" class="wrapper">
+        <div class="title">Get in touch</div>
+        <div class="container">
+          <header class="style1">
+            <h2>Want a walkthrough?</h2>
+            <p>Reach out and we'll show you Gravivity running end to end.</p>
+          </header>
+          <div class="row">
+            <div class="col-6 col-12-medium">
+              <!-- Demo request form (placeholder: handled in assets/js/gravivity.js) -->
+              <section>
+                <form id="ctaForm" action="#">
+                  <div class="row gtr-50">
+                    <div class="col-6 col-12-small">
+                      <input
+                        type="text"
+                        name="name"
+                        id="contact-name"
+                        placeholder="Name"
+                      />
+                    </div>
+                    <div class="col-6 col-12-small">
+                      <input
+                        type="email"
+                        name="email"
+                        id="contact-email"
+                        placeholder="you@company.com"
+                        required
+                      />
+                    </div>
+                    <div class="col-12">
+                      <textarea
+                        name="message"
+                        id="contact-message"
+                        placeholder="Tell us about your production setup (optional)"
+                        rows="4"
+                      ></textarea>
+                    </div>
+                    <div class="col-12">
+                      <ul class="actions">
+                        <li>
+                          <input
+                            type="submit"
+                            class="style1"
+                            value="Request a Demo"
+                          />
+                        </li>
+                      </ul>
+                      <p id="formNote" class="form-note" role="status"></p>
+                    </div>
+                  </div>
+                </form>
+              </section>
+            </div>
+            <div class="col-6 col-12-medium">
+              <!-- Project info -->
+              <section class="feature-list small">
+                <div class="row">
+                  <div class="col-6 col-12-small">
+                    <section>
+                      <h3 class="icon brands fa-github">Source</h3>
+                      <p>
+                        <!-- TODO: replace # with your GitHub repo link -->
+                        <a href="#">View on GitHub</a>
+                      </p>
+                    </section>
+                  </div>
+                  <div class="col-6 col-12-small">
+                    <section>
+                      <h3 class="icon solid fa-envelope">Email</h3>
+                      <p>
+                        <!-- TODO: replace with your real team email -->
+                        <a href="mailto:team@example.com">team@example.com</a>
+                      </p>
+                    </section>
+                  </div>
+                  <div class="col-6 col-12-small">
+                    <section>
+                      <h3 class="icon solid fa-industry">Built for</h3>
+                      <p>Chemical manufacturing teams</p>
+                    </section>
+                  </div>
+                  <div class="col-6 col-12-small">
+                    <section>
+                      <h3 class="icon solid fa-layer-group">Platforms</h3>
+                      <p>Mobile and web</p>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div id="copyright">
+            <ul>
+              <li>
+                &copy; <span id="year"></span> Gravivity. Built as a team
+                project.
+              </li>
+              <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/gravivity.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script src="assets/js/scroll.js"></script>
+  </body>
+</html>
