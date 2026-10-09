@@ -26,32 +26,58 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* ---------- Spotlight: SVG path drawn on scroll ---------- */
+/* ---------- Spotlight ---------- */
 .spotlight {
   position: relative;
-  isolation: isolate; /* keeps the z-index:-1 path above the spotlight's own background */
-  overflow: hidden;
-  background-color: var(--cream);
+  isolation: isolate;
 }
+
 .spotlight .svg-path {
   position: absolute;
-  top: 25svh;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
+  inset: 0; /* always exactly as tall as the spotlight */
   z-index: -1;
   pointer-events: none;
 }
 .spotlight .svg-path svg {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
-/* let the path show through the sections inside it */
-.spotlight .wrapper,
-.spotlight .wrapper .title {
-  background-color: transparent;
+.spotlight .svg-path.mobile {
+  display: none;
+}
+@media (max-width: 736px) {
+  .spotlight .svg-path.desktop {
+    display: none;
+  }
+  .spotlight .svg-path.mobile {
+    display: block;
+  }
+}
+
+/* Sections inside the spotlight: background moves to a layer BEHIND the path */
+.spotlight > section.wrapper,
+.spotlight > #screens {
+  background: none; /* section.wrapper beats the later .wrapper.style3 rule */
+}
+
+.spotlight > .wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--bg, #fff);
+}
+#features,
+#team {
+  --bg: #fff;
+}
+#stack {
+  --bg: var(--cream);
+}
+#screens {
+  --bg: linear-gradient(180deg, var(--dusk) 0%, #5a0f0f 55%, #7a2020 100%);
 }
 
 /* ---------- Full-height sections (header with the rings + last section) ---------- */
