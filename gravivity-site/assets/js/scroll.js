@@ -39,7 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const mm = gsap.matchMedia();
   mm.add(
     {
+      // gsap only runs this function when AT LEAST ONE of these queries matches,
+      // so every screen size needs a query of its own (desktop was missing before).
       mobile: "(max-width: 736px)",
+      desktop: "(min-width: 737px)",
       reduce: "(prefers-reduced-motion: reduce)",
     },
     (ctx) => {
@@ -73,6 +76,32 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     },
   );
+
+  /* ---------- YouTube: show a poster, load the real player only on click ---------- */
+  document.querySelectorAll(".video-frame").forEach((frame) => {
+    const id = frame.dataset.videoId;
+    const poster = frame.querySelector(".video-poster");
+    if (!poster) return;
+
+    if (!id || id === "YOUR_VIDEO_ID") {
+      frame.classList.add("is-empty"); // shows the "add your video ID" placeholder
+      return;
+    }
+
+    poster.href = `https://www.youtube.com/watch?v=${id}`; // works even if JS fails
+    poster.style.backgroundImage = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+
+    poster.addEventListener("click", (e) => {
+      e.preventDefault();
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = frame.dataset.title || "Video";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      poster.replaceWith(iframe);
+    });
+  });
 
   window.addEventListener("load", () => ScrollTrigger.refresh());
 });
